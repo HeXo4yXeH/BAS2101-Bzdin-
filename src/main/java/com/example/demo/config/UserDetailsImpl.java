@@ -47,5 +47,6 @@ public class UserDetailsImpl implements UserDetails {
                 true,
                 true,
                 user.getRole().grantedAuthority());
+                //eqwerw
     }
 }
