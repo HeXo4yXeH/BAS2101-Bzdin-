@@ -20,16 +20,18 @@ public class ApplicationUser {
     @Id
     @GeneratedValue
     private UUID id;
-
+    @Column(unique = true)
     private String name;
-
+    @Column(unique = true)
     private String email;
 
     private String password;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "users_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> role;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name ="role")
+    private ApplicationUserRole role;
 }

@@ -8,8 +8,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -41,10 +39,6 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public static UserDetails fromApplicationUser(ApplicationUser user) {
-        var authorities = user.getRoles().stream()
-                .map(role -> role.getName().grantedAuthority())
-                .flatMap(Set::stream)
-                .toList();
         return new User(
                 user.getEmail(),
                 user.getPassword(),
@@ -52,6 +46,6 @@ public class UserDetailsImpl implements UserDetails {
                 true,
                 true,
                 true,
-                authorities);
+                user.getRole().grantedAuthority());
     }
 }

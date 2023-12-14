@@ -32,10 +32,11 @@ public class WebSecurityConfig {
                 .csrf((csrf) -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeHttpRequests((authz) -> authz
+                        .requestMatchers("/registration").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/auth/login").permitAll()
-                        .defaultSuccessUrl("/auth/success", true))
+                        .defaultSuccessUrl("/groups", true))
                 .logout(form -> form
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST")).permitAll()
                         .invalidateHttpSession(true)
