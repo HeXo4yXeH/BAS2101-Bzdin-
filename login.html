@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Please Log In</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet"/>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body>
+<h1>Please Log In</h1>
+<div th:if="${param.error}">
+    Invalid username and password.</div>
+<div th:if="${param.logout}">
+    You have been logged out.</div>
+<form th:action="@{/auth/login}" method="post">
+    <div>
+        <input type="text" name="username" placeholder="Username"/>
+    </div>
+    <div>
+        <input type="password" name="password" placeholder="Password"/>
+    </div>
+    <input type="submit" value="Log in" />
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <div class="g-recaptcha"
+         data-sitekey="6Lek7S8pAAAAAAsikm69I-6npMXHvIgKyK75qOZV"
+         data-callback="recaptchaCallback">
+    </div>
+</form>
+<script>
+              // Функция обратного вызова, вызываемая при успешной проверке reCAPTCHA
+              function recaptchaCallback() {
+                  // Разблокировать кнопку отправки
+                  document.getElementById('submitButton').disabled = false;
+              }
+
+              // Функция, вызываемая для проверки, что reCAPTCHA не истекла
+              function expiredCallback() {
+                  // Блокировать кнопку отправки
+                  document.getElementById('submitButton').disabled = true;
+              }
+            </script>
+</body>
+</html>
