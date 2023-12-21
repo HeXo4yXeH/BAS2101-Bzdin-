@@ -10,6 +10,7 @@ import com.example.demo.model.UserData;
 public interface UserService {
 
     void register(final UserData user) throws UserAlreadyExistException;
+    void ChangePassword(ApplicationUser user,String newPassworrd);
     boolean checkIfUserExist(final String email);
     void sendRegistrationConfirmationEmail(final ApplicationUser user);
     boolean verifyUser(final String token) throws InvalidTokenException;

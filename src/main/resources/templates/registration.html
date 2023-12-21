@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <title>New there?</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet"/>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -46,6 +50,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="g-recaptcha"
+                     data-sitekey="6Lek7S8pAAAAAAsikm69I-6npMXHvIgKyK75qOZV"
+                     data-callback="recaptchaCallback">
+                </div>
+                <script>
+              // Функция обратного вызова, вызываемая при успешной проверке reCAPTCHA
+              function recaptchaCallback() {
+                  document.getElementById('submitButton').disabled = false;
+              }
+
+              // Функция, вызываемая для проверки, что reCAPTCHA не истекла
+              function expiredCallback() {
+                  document.getElementById('submitButton').disabled = true;
+              }
+            </script>
                 <div><input type="submit" value="Sign In"/></div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             </form>

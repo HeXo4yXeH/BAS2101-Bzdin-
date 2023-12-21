@@ -1,6 +1,10 @@
 package com.example.demo;
 
+
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.filters.ExpiresFilter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +29,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig {
 
     private final UserDetailsService userDetailsService;
+
+//    @Autowired
+//    private CustomAuthenticationFailureHandler failureHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -57,6 +64,7 @@ public class WebSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
+
 }
 
 //import org.springframework.context.annotation.Bean;

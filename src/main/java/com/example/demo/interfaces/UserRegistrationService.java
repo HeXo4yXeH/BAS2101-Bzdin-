@@ -39,6 +39,12 @@ public class UserRegistrationService  implements UserService {
         applicationUser.setRole(ApplicationUserRole.USER);
         userRepository.save(applicationUser);
     }
+    @Override
+    public void ChangePassword(ApplicationUser user,String newPassworrd){
+        user.setPassword(passwordEncoder.encode(newPassworrd));
+        //!!!
+        userRepository.save(user);
+    }
 
 
     @Override

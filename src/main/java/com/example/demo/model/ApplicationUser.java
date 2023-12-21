@@ -26,7 +26,11 @@ public class ApplicationUser {
     private String email;
 
     private String password;
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+//    private boolean block;
+//    private Integer attempts;
+
+    //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinTable(name = "users_roles",
 //            joinColumns = @JoinColumn(name = "user_id"),
 //            inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -34,4 +38,5 @@ public class ApplicationUser {
     @Enumerated(value = EnumType.STRING)
     @Column(name ="role")
     private ApplicationUserRole role;
+
 }
