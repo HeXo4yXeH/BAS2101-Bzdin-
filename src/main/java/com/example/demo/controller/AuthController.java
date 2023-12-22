@@ -23,14 +23,14 @@ public class AuthController {
     private RecaptchaService recaptchaService;
     @Autowired
     private UserRepository userRepository;
-    @RequestMapping("/auth")
+//    @RequestMapping("/auth")
 
 
-    @GetMapping("/login")
+    @GetMapping("/auth/login")
     public String getLoginPage() {
         return "login";
     }
-    @PostMapping("/login")
+    @PostMapping("/auth/login")
     public ResponseEntity<?> signup(@Valid ApplicationUser user,
                                     @RequestParam(name="g-recaptcha-response") String recaptchaResponse,
                                     HttpServletRequest request
@@ -49,7 +49,7 @@ public class AuthController {
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
-    @GetMapping("/success")
+    @GetMapping("/auth/success")
     public String getSuccessPage() {
         return "success";
     }
