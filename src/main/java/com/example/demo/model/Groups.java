@@ -1,11 +1,14 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
 
+//@RedisHash("Group")
 @Entity
 @Table(name = "Groups")
-public class Groups {
+public class Groups implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;

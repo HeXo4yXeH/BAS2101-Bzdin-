@@ -13,11 +13,16 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-//@RequestMapping("/api")
 public class GroupsController {
 
     @Autowired
     GroupsRepository GroupsRepository;
+
+    private final GroupsService groupsService;
+
+    public GroupsController(GroupsService groupsService) {
+        this.groupsService = groupsService;
+    }
 
     @GetMapping("/groups")
     public ResponseEntity<List<Groups>> getAllTutorials(@RequestParam(required = false) String title) {
@@ -38,13 +43,14 @@ public class GroupsController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//    @Cacheable(key = "#id",value = "Group")
     @GetMapping("/groups/{id}")
     public ResponseEntity<Groups> getTutorialById(@PathVariable("id") long id) {
-        Optional<Groups> tutorialData = GroupsRepository.findById(id);
+//        Optional<Groups> tutorialData = GroupsRepository.findById(id);
+        Groups tutorialData = groupsService.getGroupsForId(id);
 
-        if (tutorialData.isPresent()) {
-            return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+        if (tutorialData.toString() !="") {
+            return new ResponseEntity<>(tutorialData, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

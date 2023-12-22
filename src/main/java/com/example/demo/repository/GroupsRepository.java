@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface GroupsRepository extends JpaRepository<Groups, Long> {
     List<Groups> findByTitleContaining(String title);
+
 }
