@@ -26,8 +26,13 @@ public class ApplicationUser {
     private String email;
 
     private String password;
+    @Column(name = "SecretOauthCode")
+    private String SecretOauthCode;
 
-//    private boolean block;
+    public void setSecretOauthCode(String secretOauthCode) {
+        SecretOauthCode = secretOauthCode;
+    }
+    //    private boolean block;
 //    private Integer attempts;
 
     //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static com.example.demo.security.GoogleAuthenticator.generateSecretKey;
+
 @Service("userService")
 @RequiredArgsConstructor
 public class UserRegistrationService  implements UserService {
@@ -35,6 +37,7 @@ public class UserRegistrationService  implements UserService {
         }
         ApplicationUser applicationUser = new ApplicationUser();
         BeanUtils.copyProperties(user, applicationUser);
+        applicationUser.setSecretOauthCode(generateSecretKey());
         encodePassword(applicationUser, user);
         applicationUser.setRole(ApplicationUserRole.USER);
         userRepository.save(applicationUser);

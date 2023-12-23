@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,8 @@ public class UserData implements Serializable {
     // Геттеры и сеттеры для поля password
     @NotEmpty(message = "Password can not be empty")
     private String password;
+    @Column(name = "SecretOauthCode")
+    private String SecretOauthCode;
 
     public void setName(String name) {
         this.name = name;

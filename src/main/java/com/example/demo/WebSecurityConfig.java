@@ -39,7 +39,14 @@ public class WebSecurityConfig {
                 .csrf((csrf) -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/registration","/actuator","/actuator/prometheus").permitAll()
+                        .requestMatchers("/registration",
+                                "/actuator",
+                                "/actuator/prometheus",
+                                "/comment",
+                                "/oauth/**",
+                                "/generate/**",
+                                "/category/create",
+                                "/article/show").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/auth/login").permitAll()
